@@ -1,0 +1,105 @@
+:root {
+    --funbrush-purple: #6B2C91;
+}
+
+* {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.square {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(107, 44, 145, 0.02);
+    border: 1px solid rgba(107, 44, 145, 0.08);
+    transform: rotate(45deg);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square:nth-child(1) { top: 15%; left: 15%; }
+.square:nth-child(2) { top: 35%; right: 15%; }
+.square:nth-child(3) { bottom: 25%; left: 25%; }
+.square:nth-child(4) { bottom: 15%; right: 25%; }
+
+.main-content {
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem;
+}
+
+.info-block {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: floatIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.info-block:nth-child(1) { animation-delay: 0.3s; }
+.info-block:nth-child(2) { animation-delay: 0.6s; }
+.info-block:nth-child(3) { animation-delay: 0.9s; }
+
+.floating-text {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+    animation: float 6s ease-in-out infinite;
+}
+
+.info-block:nth-child(2) .floating-text {
+    animation-delay: -2s;
+}
+
+.info-block:nth-child(3) .floating-text {
+    animation-delay: -4s;
+}
+
+@keyframes floatIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Hover effects */
+.info-block:hover .floating-text {
+    color: var(--funbrush-purple);
+    transition: color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .floating-text {
+        font-size: 1.8rem;
+    }
+    
+    .floating-content {
+        gap: 3rem;
+    }
+} 
