@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 // About page route
 router.get('/about', (req, res) => {
-    res.render('about', {
+    res.render('about.handlebars', {
         title: 'About - FunBrush',
         isAbout: true
     });
